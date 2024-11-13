@@ -12,14 +12,24 @@
   max-width: 96%; /* Optional: Limit the width of the grid */
 }
 
+.post-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 /* Individual post styling */
 .post-item {
+  display: flex;
+  flex-direction: column;
   width: 500px;
   height: 750px;
+  position: relative;
   background-color: #fff; /* Background color for each post */
   border: 1px solid #ddd; /* Border around each post */
   border-radius: 8px; /* Rounded corners */
   padding: 15px; /* Padding inside each post */
+  margin: 15px 0px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
   transition: transform 0.2s ease-in-out; /* Smooth transition */
 }
@@ -43,6 +53,15 @@
   height: 600px;
 }
 
+.media-container.shrink {
+  height: 450px; /* Reduced height when comments are shown */
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+}
+
 .media-container img {
   max-height: 600px;
 }
@@ -51,3 +70,57 @@
   max-height: 100%
 }
 
+.video.shrink {
+  max-height: 450px;
+}
+
+.img.shrink {
+  max-height: 450px;
+}
+
+.a.shrink {
+  max-height: 450px;
+}
+
+.scrollable-p {
+  width: auto; /* Set a fixed width */
+  max-height: 500px; /* Set a fixed height */
+  overflow-y: auto; /* Adds a vertical scroll bar if content overflows */
+  overflow-x: hidden; /* Hides horizontal overflow (optional) */
+  padding: 10px; /* Optional padding */
+  border: 1px solid #ccc; /* Optional border for styling */
+  background-color: #f9f9f9; /* Optional background color */
+}
+
+.comments-pane {
+  top: 575px;
+  right: 0px; /* Adjust width as needed */
+  width: auto;
+  max-height: 175px;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.comments-pane h4 {
+  margin-top: 0;
+  z-index: 1;
+}
+
+.comment {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comments-button {
+  margin: 0px;
+  z-index: 1000;
+}
