@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPosts, fetchComments } from '../redux/actions/fetching';
-
+import { fetchPosts, fetchComments, fetchMorePosts } from '../redux/actions/fetching';
+import StreamableVideo from './StreamableVideo';
 const PostList = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.posts);
@@ -32,8 +32,6 @@ const PostList = () => {
     }
   };
 
-  
-
 const renderMedia = (post) => {
   const mediaUrl = post.data.url;
   const mediaType = post.data.post_hint; // Determine the type of media
@@ -55,6 +53,8 @@ const renderMedia = (post) => {
       </a>
       <img className='thumbnail' src={post.data.thumbnail} alt="website thumbail"></img>
     </div>
+  } else if (post.data.domain === "streamable.com") {
+    <StreamableVideo url={post.data.url} />
   } else if (mediaType === 'hosted:video' || mediaType === 'rich:video') {
     const videoSources = [
       { src: mediaUrl + "/DASH_1080.mp4", type: "video/mp4" },
@@ -148,11 +148,11 @@ const renderMedia = (post) => {
               </div>
             )}
           </div>
-
+          
         ))}
         {loading && <p>Loading more posts...</p>}
       </div>
-
+        <button onClick={() => fetchPosts()}>See More Posts</button>
     </div>
   );
 };
